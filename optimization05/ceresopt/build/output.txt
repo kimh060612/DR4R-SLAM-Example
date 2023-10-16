@@ -1,0 +1,2 @@
+Ceres Solver Report: Iterations: 8, Initial cost: 1.597873e+06, Final cost: 5.096851e+01, Termination: CONVERGENCE
+estimated a,b,c = 0.890908 2.1719 0.943628 

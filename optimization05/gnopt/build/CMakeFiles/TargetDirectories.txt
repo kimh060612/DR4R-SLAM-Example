@@ -1,0 +1,3 @@
+/home/michael/Michael/SLAMBook/optimization05/gnopt/build/CMakeFiles/gaussNewtonOpt.dir
+/home/michael/Michael/SLAMBook/optimization05/gnopt/build/CMakeFiles/edit_cache.dir
+/home/michael/Michael/SLAMBook/optimization05/gnopt/build/CMakeFiles/rebuild_cache.dir

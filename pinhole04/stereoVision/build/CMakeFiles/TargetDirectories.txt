@@ -1,0 +1,3 @@
+/home/michael/Michael/SLAMBook/pinhole04/stereoVision/build/CMakeFiles/stereoVision.dir
+/home/michael/Michael/SLAMBook/pinhole04/stereoVision/build/CMakeFiles/edit_cache.dir
+/home/michael/Michael/SLAMBook/pinhole04/stereoVision/build/CMakeFiles/rebuild_cache.dir

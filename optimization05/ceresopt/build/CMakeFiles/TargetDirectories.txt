@@ -1,0 +1,3 @@
+/home/michael/Michael/SLAMBook/optimization05/ceresopt/build/CMakeFiles/ceresOpt.dir
+/home/michael/Michael/SLAMBook/optimization05/ceresopt/build/CMakeFiles/edit_cache.dir
+/home/michael/Michael/SLAMBook/optimization05/ceresopt/build/CMakeFiles/rebuild_cache.dir
