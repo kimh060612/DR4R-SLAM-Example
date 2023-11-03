@@ -36,7 +36,7 @@ def ICP(pair1: list, pair2: list):
         vec1 = np.expand_dims(q1[i], axis=1)
         vec2 = np.expand_dims(q2[i], axis=0)
         W += vec1 @ vec2
-    U, _, Vt = svd(W)
+    U, _, Vt = svd(W) # Numpy SVD function
     R = U @ Vt
     if det(R) < 0:
         R = -R
@@ -70,6 +70,7 @@ if __name__ == "__main__":
     points3DA = []
     points3DB = []
 
+    # match distance between descriptors
     for i, con in enumerate(desc1):
         dist = matches[i].distance
         min_dist = min(min_dist, dist)
@@ -77,6 +78,7 @@ if __name__ == "__main__":
 
     for m in matches:
         if (m.distance > max(2 * min_dist, 30.)):
+            # descriptor distance가 일정 수준 이상으로 커지면 outlier 처리
             continue
         x1, y1 = int(kp1[m.queryIdx].pt[0]), int(kp1[m.queryIdx].pt[1])
         x2, y2 = int(kp2[m.trainIdx].pt[0]), int(kp2[m.trainIdx].pt[1])

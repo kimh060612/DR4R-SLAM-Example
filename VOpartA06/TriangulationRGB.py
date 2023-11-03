@@ -69,8 +69,8 @@ if __name__ == "__main__":
     
     pts1 = np.int32(pointsA)
     pts2 = np.int32(pointsB)
-    E, mask = cv2.findEssentialMat(pts1, pts2, method=cv2.RANSAC, focal=521, maxIters=500, threshold=1)
-    points, R, t, mask, triP = cv2.recoverPose(E, pts1, pts2, K, distanceThresh=0.5)
+    E, mask = cv2.findEssentialMat(pts1, pts2, method=cv2.RANSAC, focal=521, maxIters=500, threshold=1) # Essential Matrix 계산
+    points, R, t, mask, triP = cv2.recoverPose(E, pts1, pts2, K, distanceThresh=0.5) # Essential Matrix로부터 Camera pose 계산
     T1 = np.concatenate([np.eye(3), np.zeros((3, 1))], axis=1)
     T2 = np.concatenate([R, t], axis=1)
     print(T1, T2, sep="\n")
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     pointCam1 = np.array(pointCam1)
     pointCam2 = np.array(pointCam2)
     print(pointCam1.shape)
-    points4D = cv2.triangulatePoints(T1, T2, np.transpose(pointCam1), np.transpose(pointCam2))
+    points4D = cv2.triangulatePoints(T1, T2, np.transpose(pointCam1), np.transpose(pointCam2)) # Triangulation Equation 계산
     
     depthResultPoints = []
     for i in range(pointCam1.shape[0]):

@@ -43,26 +43,28 @@ if __name__ == "__main__":
     points3D = []
     points2D = []
 
+    # match distance between descriptors
     for i, con in enumerate(desc1):
         dist = matches[i].distance
         min_dist = min(min_dist, dist)
         max_dist = max(max_dist, dist)
 
     for m in matches:
-        if (m.distance > max(2 * min_dist, 30.)):
+        if (m.distance > max(2 * min_dist, 30.)): 
+            # descriptor distance가 일정 수준 이상으로 커지면 outlier 처리
             continue
         x, y = int(kp1[m.queryIdx].pt[0]), int(kp1[m.queryIdx].pt[1])
         d = imageADepth[y][x]
         if d == 0:
             continue
         dd = d / 5000.0
-        p1 = pixel2Cam(kp1[m.queryIdx].pt)
-        points3D.append((p1[0] * dd, p1[1] * dd, dd))
-        points2D.append(kp2[m.trainIdx].pt)
+        p1 = pixel2Cam(kp1[m.queryIdx].pt) # Pinhole Camera Model에 기반한 역함수
+        points3D.append((p1[0] * dd, p1[1] * dd, dd)) # Homogeneous Coordinates를 변환 (2D -> 3D)
+        points2D.append(kp2[m.trainIdx].pt) # 2D points
     
-    print(len(points3D))
-    success, vector_rotation, vector_translation = cv2.solvePnP(
+    print("Number of points: ", len(points3D))
+    success, vector_rotation, vector_translation = cv2.solvePnP( # PnP Solver in OpenCV
         np.array(points3D), np.array(points2D), K, distortions, flags=0
     )
-    rotationMatrix, _ = cv2.Rodrigues(vector_rotation)
+    rotationMatrix, _ = cv2.Rodrigues(vector_rotation) # rotation vector -> rotation matrix
     print(rotationMatrix, vector_rotation, vector_translation, sep="\n")
